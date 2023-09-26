@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled2/my_theme.dart';
+import 'package:untitled2/providers/app_config_provider.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
   @override
@@ -11,15 +14,21 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Container(
+      color:
+          provider.isDark() ? MyTheme.backgroundDark : MyTheme.backgroundLight,
       child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Add New task',
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
+            child: Text('Add New task',
+                style: provider.isDark()
+                    ? Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(color: MyTheme.whiteColor)
+                    : Theme.of(context).textTheme.titleSmall),
           ),
           Form(
             key: formKey,
@@ -33,8 +42,14 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                         ? "plies enter the title"
                         : null,
                     decoration: InputDecoration(
-                      hintText: "Enter task title",
-                    ),
+                        labelText: "Enter title task",
+                        labelStyle: Theme.of(context)
+                            .textTheme
+                            .titleSmall!
+                            .copyWith(
+                                color: provider.isDark()
+                                    ? MyTheme.greyColor
+                                    : MyTheme.greyColor)),
                   ),
                 ),
                 Padding(
@@ -44,8 +59,14 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                         ? "plies enter the description"
                         : null,
                     decoration: InputDecoration(
-                      hintText: "Enter description task",
-                    ),
+                        labelText: "Enter description task",
+                        labelStyle: Theme.of(context)
+                            .textTheme
+                            .titleSmall!
+                            .copyWith(
+                                color: provider.isDark()
+                                    ? MyTheme.greyColor
+                                    : MyTheme.greyColor)),
                     maxLines: 3,
                   ),
                 ),
@@ -53,7 +74,12 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     "Select Time",
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: provider.isDark()
+                        ? Theme.of(context)
+                            .textTheme
+                            .titleSmall!
+                            .copyWith(color: MyTheme.whiteColor)
+                        : Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
                 Padding(
@@ -64,7 +90,12 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                     },
                     child: Text(
                         "${selectedTime.day}/${selectedTime.month}/${selectedTime.year}",
-                        style: Theme.of(context).textTheme.titleSmall,
+                        style: provider.isDark()
+                            ? Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(color: MyTheme.whiteColor)
+                            : Theme.of(context).textTheme.titleSmall,
                         textAlign: TextAlign.center),
                   ),
                 ),
