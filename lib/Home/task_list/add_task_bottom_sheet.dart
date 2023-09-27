@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/my_theme.dart';
 import 'package:untitled2/providers/app_config_provider.dart';
@@ -18,99 +19,101 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
     return Container(
       color:
           provider.isDark() ? MyTheme.backgroundDark : MyTheme.backgroundLight,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('Add New task',
-                style: provider.isDark()
-                    ? Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(color: MyTheme.whiteColor)
-                    : Theme.of(context).textTheme.titleSmall),
-          ),
-          Form(
-            key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    validator: (value) => value == null || value.isEmpty
-                        ? "plies enter the title"
-                        : null,
-                    decoration: InputDecoration(
-                        labelText: "Enter title task",
-                        labelStyle: Theme.of(context)
-                            .textTheme
-                            .titleSmall!
-                            .copyWith(
-                                color: provider.isDark()
-                                    ? MyTheme.greyColor
-                                    : MyTheme.greyColor)),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    validator: (value) => value == null || value.isEmpty
-                        ? "plies enter the description"
-                        : null,
-                    decoration: InputDecoration(
-                        labelText: "Enter description task",
-                        labelStyle: Theme.of(context)
-                            .textTheme
-                            .titleSmall!
-                            .copyWith(
-                                color: provider.isDark()
-                                    ? MyTheme.greyColor
-                                    : MyTheme.greyColor)),
-                    maxLines: 3,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Select Time",
-                    style: provider.isDark()
-                        ? Theme.of(context)
-                            .textTheme
-                            .titleSmall!
-                            .copyWith(color: MyTheme.whiteColor)
-                        : Theme.of(context).textTheme.titleSmall,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {
-                      showCalender();
-                    },
-                    child: Text(
-                        "${selectedTime.day}/${selectedTime.month}/${selectedTime.year}",
-                        style: provider.isDark()
-                            ? Theme.of(context)
-                                .textTheme
-                                .titleSmall!
-                                .copyWith(color: MyTheme.whiteColor)
-                            : Theme.of(context).textTheme.titleSmall,
-                        textAlign: TextAlign.center),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                      onPressed: () {
-                        addTask();
-                      },
-                      child: Text("Add")),
-                ),
-              ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(AppLocalizations.of(context)!.add_task,
+                  style: provider.isDark()
+                      ? Theme.of(context)
+                          .textTheme
+                          .titleSmall!
+                          .copyWith(color: MyTheme.whiteColor)
+                      : Theme.of(context).textTheme.titleSmall),
             ),
-          )
-        ],
+            Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      validator: (value) => value == null || value.isEmpty
+                          ? AppLocalizations.of(context)!.enter_title
+                          : null,
+                      decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.title_task,
+                          labelStyle: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(
+                                  color: provider.isDark()
+                                      ? MyTheme.greyColor
+                                      : MyTheme.greyColor)),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      validator: (value) => value == null || value.isEmpty
+                          ? AppLocalizations.of(context)!.enter_desc
+                          : null,
+                      decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.description,
+                          labelStyle: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(
+                                  color: provider.isDark()
+                                      ? MyTheme.greyColor
+                                      : MyTheme.greyColor)),
+                      maxLines: 3,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      AppLocalizations.of(context)!.select_Task,
+                      style: provider.isDark()
+                          ? Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(color: MyTheme.whiteColor)
+                          : Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        showCalender();
+                      },
+                      child: Text(
+                          "${selectedTime.day}/${selectedTime.month}/${selectedTime.year}",
+                          style: provider.isDark()
+                              ? Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(color: MyTheme.whiteColor)
+                              : Theme.of(context).textTheme.titleSmall,
+                          textAlign: TextAlign.center),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          addTask();
+                        },
+                        child: Text(AppLocalizations.of(context)!.add)),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

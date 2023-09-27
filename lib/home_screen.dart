@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:untitled2/Home/settings/settings.dart';
 import 'package:untitled2/Home/task_list/add_task_bottom_sheet.dart';
 import 'package:untitled2/Home/task_list/task_list.dart';
-import 'package:provider/provider.dart';
 import 'package:untitled2/my_theme.dart';
 import 'package:untitled2/providers/app_config_provider.dart';
 
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "TODo List",
+          AppLocalizations.of(context)!.todo,
           style: provider.isDark()
               ? Theme.of(context)
                   .textTheme
@@ -32,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
+        color: provider.isDark() ? MyTheme.blockDark : MyTheme.whiteColor,
         shape: CircularNotchedRectangle(),
         notchMargin: 8,
         child: BottomNavigationBar(
@@ -43,11 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.list),
-              label: "List",
+              label: AppLocalizations.of(context)!.list,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              label: "Settings",
+              label: AppLocalizations.of(context)!.settings,
             ),
           ],
         ),

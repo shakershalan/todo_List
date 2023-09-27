@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:untitled2/home_screen.dart';
 import 'package:untitled2/my_theme.dart';
-import 'package:provider/provider.dart';
 import 'package:untitled2/providers/app_config_provider.dart';
 
 void main() {
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.themeLight,
       darkTheme: MyTheme.themeDark,
       themeMode: provider.appMode,
+      locale: Locale(provider.appLanguage),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
       },
